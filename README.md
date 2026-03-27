@@ -1,138 +1,149 @@
-# Nyaya Setu — न्याय सेतु
-
-> **AI-assisted legal triage and support for safer, faster access to justice in India.**
->
-> Hackathon MVP · Frontend Only · No backend required
+# 🏛️ Nyaya Setu  
+AI-assisted Legal Triage & Safety Support Platform
 
 ---
 
-## 🚀 Quick Start
+## 📌 Overview
 
-```bash
-# 1. Install dependencies
-npm install
+Nyaya Setu is a civic-tech platform designed to improve early-stage dispute handling and access to justice in India.
 
-# 2. Start the development server
-npm run dev
+It enables:
+- Structured submission of disputes from both parties  
+- AI-assisted neutral summaries and inconsistency detection  
+- Faster case triage for reviewers/judges  
+- Safety-first legal guidance for users in distress  
 
-# 3. Open in browser
-open http://localhost:3000
-```
-
----
-
-## 📁 Folder Structure
-
-```
-src/
-├── app/                   # Next.js 14 App Router pages
-│   ├── layout.tsx         # Root layout (Navbar + Footer)
-│   ├── page.tsx           # Landing page (/)
-│   ├── file-case/         # Party A complaint form (/file-case)
-│   ├── respond/           # Party B response form (/respond)
-│   ├── dashboard/         # Judge/reviewer dashboard (/dashboard)
-│   └── chat/              # Safety guidance chat (/chat)
-│
-├── components/
-│   └── layout/
-│       ├── Navbar.tsx     # Sticky top navigation
-│       └── Footer.tsx     # Footer with helplines
-│
-├── lib/
-│   ├── utils.ts           # cn(), generateCaseId(), formatDate()
-│   └── constants.ts       # APP_NAME, categories, statuses, nav links
-│
-├── mock-data/
-│   ├── cases.ts           # 5 rich mock cases with AI analysis
-│   └── messages.ts        # Chat messages and mock AI response logic
-│
-├── hooks/
-│   ├── useCases.ts        # Returns mock cases (swap for Supabase)
-│   └── useChat.ts         # Chat state management (swap for Gemini)
-│
-└── services/
-    ├── supabase.ts        # Supabase placeholder (instructions inside)
-    └── gemini.ts          # Gemini API placeholder (instructions inside)
-```
+Nyaya Setu does not replace judges or lawyers. It helps reduce friction in the initial stages of legal processes and supports faster human decision-making.
 
 ---
 
-## 📝 Where to Edit Content
+## 🚨 Problem Statement
 
-| What                         | File                                 |
-|------------------------------|--------------------------------------|
-| App name, nav links          | `src/lib/constants.ts`               |
-| Case categories              | `src/lib/constants.ts`               |
-| Landing page text/hero       | `src/app/page.tsx`                   |
-| Mock cases                   | `src/mock-data/cases.ts`             |
-| AI chat responses (mock)     | `src/mock-data/messages.ts`          |
-| Navigation links             | `src/components/layout/Navbar.tsx`   |
-| Footer helplines             | `src/components/layout/Footer.tsx`   |
+India’s legal system faces significant delays due to an overwhelming number of pending cases.
 
----
+- ~5.5 crore pending cases across courts  
+- >92,000 cases pending in the Supreme Court  
 
-## 🗄️ Connecting Supabase (Later)
-
-1. Install the SDK:
-   ```bash
-   npm install @supabase/supabase-js
-   ```
-2. Create `.env.local` in the project root:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-   ```
-3. Replace `src/services/supabase.ts` with the real client (instructions are in that file).
-4. Update `src/hooks/useCases.ts` to call the real Supabase queries.
+Key challenges:
+- Lack of structured case intake  
+- Time-consuming manual comparison of statements  
+- Poor accessibility for common citizens  
+- No immediate guidance for users in distress  
 
 ---
 
-## 🤖 Connecting Gemini AI (Later)
+## 🔍 Existing Solutions
 
-1. Install the SDK:
-   ```bash
-   npm install @google/generative-ai
-   ```
-2. Add to `.env.local`:
-   ```env
-   GEMINI_API_KEY=your-api-key
-   ```
-3. Create `src/app/api/chat/route.ts` as a Next.js API route (example template in `src/services/gemini.ts`).
-4. Update `src/hooks/useChat.ts` to call the real `/api/chat` endpoint instead of `getMockAssistantResponse`.
+Current solutions are fragmented:
+
+- Legal information websites → Static, not actionable  
+- Lawyer platforms → Expensive and not accessible to all  
+- Court databases → Complex and not user-friendly  
+- Generic chatbots → Lack legal structure and safety focus  
 
 ---
 
-## 🎨 Design System
+## 🎯 Target Users
 
-- **Colors:** Indigo/Slate palette — `primary-600` (#4f46e5) as accent
-- **Typography:** Inter (Google Fonts) via CSS import
-- **Components:** Custom CSS utility classes in `globals.css` + Radix UI primitives
-- **Spacing:** Tailwind's standard scale, page container at `max-w-7xl`
+### Primary Users
+- Citizens involved in disputes  
+- Individuals facing harassment or threats  
+- People needing help organizing facts and evidence  
 
----
+### Secondary Users
+- Legal aid volunteers  
+- NGOs  
+- Mediators and early-stage reviewers  
 
-## 📞 Emergency Helplines (India)
-
-| Helpline                  | Number          |
-|---------------------------|-----------------|
-| National Emergency        | 112             |
-| Women Helpline            | 1091            |
-| Legal Aid Services        | 15100           |
-| NCW Helpline              | 7827170170      |
-| Cyber Crime               | cybercrime.gov.in |
+### Institutional Users
+- Court support systems  
+- Legal aid desks  
 
 ---
 
-## 🛠 Tech Stack
+## ⚠️ Gap Analysis
 
-- **Next.js 14** — App Router
-- **TypeScript** — Full type safety
-- **Tailwind CSS** — Styling
-- **Radix UI** — Accessible primitives
-- **Lucide React** — Icons
-- **Mock Data** — No backend required
+Current systems fail because they are:
+- Passive (information only, no action)
+- One-sided (no comparison of both parties)
+- Complex (not citizen-friendly)
+- Unsafe (no distress-first support)
 
 ---
 
-*Built for social impact 🇮🇳 — Hackathon MVP*
-# nyaya_setu
+## 💡 Proposed Solution
+
+Nyaya Setu introduces two core modules:
+
+### 1. Case Triage Module
+- Party A files a complaint  
+- Party B submits a response  
+- AI generates:
+  - Neutral summaries  
+  - Inconsistency detection  
+  - Procedural recommendation  
+  - Confidence score  
+
+- Reviewer sees structured case in a dashboard  
+
+---
+
+### 2. Safety Guidance Module
+A chat-based assistant that:
+- Prioritizes user safety  
+- Guides evidence preservation  
+- Explains legal rights in simple language  
+- Suggests next steps or escalation  
+
+---
+
+## ✨ Unique Value Proposition
+
+Nyaya Setu is not a decision-maker — it is a decision accelerator.
+
+It:
+- Helps citizens express their case clearly  
+- Reduces manual effort for reviewers  
+- Provides calm, actionable guidance in distress  
+- Bridges the gap between citizens and legal systems  
+
+### One-line UVP:
+"Nyaya Setu helps people file, compare, and triage disputes faster while keeping human judgment at the center."
+
+---
+
+## 🏗️ Technical Architecture
+
+### Tech Stack
+
+- Frontend: Next.js + TypeScript + Tailwind CSS  
+- Backend: Supabase (PostgreSQL, Storage)  
+- AI: Gemini API (Free Tier)  
+- Deployment: Vercel (Frontend), Supabase (Backend)  
+- Future: Indian Kanoon API, WhatsApp integration  
+
+---
+
+## 📊 Architecture Diagram
+
+```mermaid
+flowchart TD
+    A[User / Citizen] --> B[Next.js Frontend]
+
+    B --> C[Case Filing - Party A]
+    B --> D[Case Response - Party B]
+    B --> E[Safety Chat]
+    B --> F[Judge Dashboard]
+
+    C --> G[Supabase Database]
+    D --> G
+
+    E --> H[Gemini API]
+
+    G --> I[AI Analysis Service]
+    I --> H
+    H --> G
+
+    G --> F
+
+    F --> J[Judge Decision]
